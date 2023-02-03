@@ -23,8 +23,9 @@ $DBconfig = array(
     'echo_error' => false     //是否开启错误提示
 );
 $DB = new NathanDb($DBconfig);
-//使用案例：
+//使用示例：
 $DB_data = $DB->name('admin_log')->where('admin_id',1)->select();
+$query = $DB->table('user')->where(array('phone' => $phone))->find();
 ~~~
 
 > 表名如果不带前缀使用 $DB->name();
@@ -224,7 +225,7 @@ insert(需要写入的数组,是否replace)
 > insert 方法添加数据成功返回新增数据的自增主键
 
 ~~~
-$data = ['foo' => 'bar', 'bar' => 'foo'];
+$data = ['name' => 'nathan', 'qq' => '2322796106'];
 $DB->name('user')->insert($data);
 ~~~
 
