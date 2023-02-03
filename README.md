@@ -103,7 +103,7 @@ $DB->table('nathan_user')->where('id', 1)->value('name');
 ~~~
 $DB->table('nathan_user')
     ->where('id','>',1)
-    ->where('name','thinkphp')
+    ->where('name','nathan')
     ->select(); 
 ~~~
 
@@ -143,7 +143,7 @@ $DB->name('user')
 ->select();
 // 小于某个时间
 $DB->name('user')
-->whereTime('birthday', '<', '2000-10-1')
+->whereTime('birthday', '<', '2023-1-10')
 ->select();
 // 时间区间查询
 $DB->name('user')
@@ -151,7 +151,7 @@ $DB->name('user')
 ->select();
 // 不在某个时间区间
 $DB->name('user')
-->whereTime('birthday', 'not between', ['1970-10-1', '2000-10-1'])
+->whereTime('birthday', 'not between', ['2022-10-1', '2023-10-1'])
 ->select();
 ```
 
@@ -166,14 +166,14 @@ SELECT  *  FROM admin_log  WHERE (`createtime` >= 1615868057 AND createtime <= 1
 > 针对时间的区间查询，系统还提供了`whereBetweenTime/whereNotBetweenTime`快捷方法。
 
 ```php
-// 查询2017年上半年注册的用户
+// 查询2023年上半年注册的用户
 $DB->name('user')
-    ->whereBetweenTime('create_time', '2017-01-01', '2017-06-30')
+    ->whereBetweenTime('create_time', '2023-01-01', '2023-06-30')
     ->select();
   
-// 查询不是2017年上半年注册的用户
+// 查询不是2023年上半年注册的用户
 $DB->name('user')
-    ->whereNotBetweenTime('create_time', '2017-01-01', '2017-06-30')
+    ->whereNotBetweenTime('create_time', '2023-01-01', '2023-06-30')
     ->select();
 ```
 
@@ -243,13 +243,13 @@ $DB->name('user')->insert($data);
 ~~~
 $DB->name('user')
     ->where('id', 1)
-    ->update(['name' => 'thinkphp']);
+    ->update(['name' => 'nathan']);
 ~~~
 
 实际生成的SQL语句可能是：
 
 ~~~
-UPDATE `nathan_user`  SET `name`='thinkphp'  WHERE  `id` = 1
+UPDATE `nathan_user`  SET `name`='nathan'  WHERE  `id` = 1
 ~~~
 
 > **update**方法返回影响数据的条数，没修改任何数据返回 0
