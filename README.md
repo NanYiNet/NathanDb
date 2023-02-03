@@ -3,7 +3,7 @@
 > Nathan - MySQL DB类操作
 >
 > Author: Nathan
-> 
+>
 > PHP7.0+
 >
 > 如果写法错误或者使用了不支持的表达式，可能返回错误
@@ -64,19 +64,19 @@ SELECT * FROM `admin` WHERE  `id` = 1 LIMIT 1
 
 ~~~
 // table方法必须指定完整的数据表名
-$DB->table('think_user')->where('id', 1)->findOrEmpty();
+$DB->table('nathan_user')->where('id', 1)->findOrEmpty();
 ~~~
 
 ### 查询数据集
 
 查询多个数据（数据集）使用select方法：
 
-$DB->table('think_user')->where('status', 1)->select();
+$DB->table('nathan_user')->where('status', 1)->select();
 
 最终生成的SQL语句可能是：
 
 ~~~
-SELECT * FROM `think_user` WHERE `status` = 1
+SELECT * FROM `nathan_user` WHERE `status` = 1
 ~~~
 
 select 方法查询结果是一个数组。
@@ -87,7 +87,7 @@ select 方法查询结果是一个数组。
 
 ~~~
 // 返回某个字段的值
-$DB->table('think_user')->where('id', 1)->value('name');
+$DB->table('nathan_user')->where('id', 1)->value('name');
 ~~~
 
 > value 方法查询结果不存在，返回 null
@@ -101,7 +101,7 @@ $DB->table('think_user')->where('id', 1)->value('name');
 ### 使用where方法：
 
 ~~~
-$DB->table('think_user')
+$DB->table('nathan_user')
     ->where('id','>',1)
     ->where('name','thinkphp')
     ->select(); 
@@ -182,13 +182,13 @@ $DB->name('user')
 alias用于设置当前数据表的别名，便于使用其他的连贯操作例如join方法等。 示例：
 
 ~~~
-$DB->table('think_user')
+$DB->table('nathan_user')
 ->alias('a')
-->join('think_dept b ','b.user_id= a.id')
+->join('nathan_dept b ','b.user_id= a.id')
 ->select();
 ~~~
 
-> SELECT * FROM think_user a INNER JOIN think_dept b ON b.user_id= a.id
+> SELECT * FROM nathan_user a INNER JOIN nathan_dept b ON b.user_id= a.id
 
 JOIN方法用于根据两个或多个表中的列之间的关系，从这些表中查询数据。join通常有下面几种类型，不同类型的join操作会影响返回的数据结果。
 
@@ -249,7 +249,7 @@ $DB->name('user')
 实际生成的SQL语句可能是：
 
 ~~~
-UPDATE `think_user`  SET `name`='thinkphp'  WHERE  `id` = 1
+UPDATE `nathan_user`  SET `name`='thinkphp'  WHERE  `id` = 1
 ~~~
 
 > **update**方法返回影响数据的条数，没修改任何数据返回 0
@@ -260,25 +260,25 @@ UPDATE `think_user`  SET `name`='thinkphp'  WHERE  `id` = 1
 
 ```php
 // score 字段加 1
-$DB->table('think_user')
+$DB->table('nathan_user')
     ->where('id', 1)
     ->inc('score')
     ->update();
 
 // score 字段加 5
-$DB->table('think_user')
+$DB->table('nathan_user')
     ->where('id', 1)
     ->inc('score', 5)
     ->update();
 
 // score 字段减 1
-$DB->table('think_user')
+$DB->table('nathan_user')
     ->where('id', 1)
     ->dec('score')
     ->update();
 
 // score 字段减 5
-$DB->table('think_user')
+$DB->table('nathan_user')
     ->where('id', 1)
     ->dec('score', 5)
     ->update();
@@ -287,10 +287,10 @@ $DB->table('think_user')
 最终生成的SQL语句可能是：
 
 ~~~
-UPDATE `think_user`  SET `score` = `score` + 1  WHERE  `id` = 1 
-UPDATE `think_user`  SET `score` = `score` + 5  WHERE  `id` = 1
-UPDATE `think_user`  SET `score` = `score` - 1  WHERE  `id` = 1
-UPDATE `think_user`  SET `score` = `score` - 5  WHERE  `id` = 1
+UPDATE `nathan_user`  SET `score` = `score` + 1  WHERE  `id` = 1 
+UPDATE `nathan_user`  SET `score` = `score` + 5  WHERE  `id` = 1
+UPDATE `nathan_user`  SET `score` = `score` - 1  WHERE  `id` = 1
+UPDATE `nathan_user`  SET `score` = `score` - 5  WHERE  `id` = 1
 ~~~
 
 ---
@@ -300,13 +300,13 @@ UPDATE `think_user`  SET `score` = `score` - 5  WHERE  `id` = 1
 返回操作成功N条
 
 ~~~
-$DB->table('think_user')->where('id',1)->delete();
+$DB->table('nathan_user')->where('id',1)->delete();
 ~~~
 
 最终生成的SQL语句可能是：
 
 ~~~
-DELETE FROM `think_user` WHERE  `id` = 1 
+DELETE FROM `nathan_user` WHERE  `id` = 1 
 ~~~
 
 ## 聚合查询
@@ -328,57 +328,57 @@ DELETE FROM `think_user` WHERE  `id` = 1
 ### count
 获取用户数：
 ~~~
-$DB->table('think_user')->count();
+$DB->table('nathan_user')->count();
 ~~~
 实际生成的SQL语句是：
 ~~~
-SELECT COUNT(*) AS tp_count FROM `think_user` LIMIT 1
+SELECT COUNT(*) AS tp_count FROM `nathan_user` LIMIT 1
 ~~~
 或者根据字段统计：
 ~~~
-$DB->table('think_user')->count('id');
+$DB->table('nathan_user')->count('id');
 ~~~
 生成的SQL语句是：
 ~~~
-SELECT COUNT(id) AS hi_total FROM `think_user` LIMIT 1
+SELECT COUNT(id) AS hi_total FROM `nathan_user` LIMIT 1
 ~~~
 
 ### max
 获取用户的最大积分：
 ~~~
-$DB->table('think_user')->max('score');
+$DB->table('nathan_user')->max('score');
 ~~~
 生成的SQL语句是：
 ~~~
-SELECT MAX(score) AS max FROM `think_user` LIMIT 1
+SELECT MAX(score) AS max FROM `nathan_user` LIMIT 1
 ~~~
 
 ### min
 获取用户的最大积分：
 ~~~
-$DB->table('think_user')->min('score');
+$DB->table('nathan_user')->min('score');
 ~~~
 生成的SQL语句是：
 ~~~
-SELECT MIN(score) AS min FROM `think_user` LIMIT 1
+SELECT MIN(score) AS min FROM `nathan_user` LIMIT 1
 ~~~
 ### avg
 获取用户的平均积分：
 ~~~
-$DB->table('think_user')->avg('score');
+$DB->table('nathan_user')->avg('score');
 ~~~
 生成的SQL语句是：
 ~~~
-SELECT AVG(score) AS tp_avg FROM `think_user` LIMIT 1
+SELECT AVG(score) AS tp_avg FROM `nathan_user` LIMIT 1
 ~~~
 ### sum
 统计用户的总成绩：
 ~~~
-$DB->table('think_user')->where('id',10)->sum('score');
+$DB->table('nathan_user')->where('id',10)->sum('score');
 ~~~
 生成的SQL语句是：
 ~~~
-SELECT SUM(score) AS tp_sum FROM `think_user` LIMIT 1
+SELECT SUM(score) AS tp_sum FROM `nathan_user` LIMIT 1
 ~~~
 如果你要使用group进行聚合查询，需要自己实现查询，例如：
 ~~~
